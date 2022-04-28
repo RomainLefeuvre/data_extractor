@@ -9,6 +9,7 @@ import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClient;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -20,7 +21,37 @@ public class GithubGraphQlEndpoint {
     @GraphQLClient("github-graphql")
     DynamicGraphQLClient githubClient;
     public List<GithubGraphQLRepository> getAllRepositoriesMatchingDescription(){
-        return this.getRepositoriesMatchingDescription(null).getEdges().stream().map(edge -> edge.getRepository()).collect(Collectors.toList());
+        List<GithubGraphQLRepository> res = new LinkedList<>();
+        GithubGraphQLResponse last;
+        String cursor =null ;
+        int i=1;
+
+       do{
+           last = this.getRepositoriesMatchingDescription(cursor);
+           cursor = last.getEdges().get(last.getEdges().size()-1).getCursor();
+           res.addAll(last.getEdges().stream().map(edge -> edge.getRepository()).collect(Collectors.toList()));
+           System.out.println("Request:"+i+" over "+last.getRepositoryCount()/100+" (found "+last.getRepositoryCount()+")");
+           i++;
+       } while(last.getPageInfo().hasNextPage);
+        System.out.println("Res Size :"+res.size());
+        return res;
+    }
+
+    public List<GithubGraphQLRepository> getAllRepositoriesMatchingReadme(){
+        List<GithubGraphQLRepository> res = new LinkedList<>();
+        GithubGraphQLResponse last;
+        String cursor =null ;
+        int i=1;
+
+        do{
+            last = this.getRepositoriesMatchingReadme(cursor);
+            cursor = last.getEdges().get(last.getEdges().size()-1).getCursor();
+            res.addAll(last.getEdges().stream().map(edge -> edge.getRepository()).collect(Collectors.toList()));
+            System.out.println("Request:"+i+" over "+last.getRepositoryCount()/100+" (found "+last.getRepositoryCount()+")");
+            i++;
+        } while(last.getPageInfo().hasNextPage);
+
+        return res;
     }
 
     public GithubGraphQLResponse getRepositoriesMatchingReadme(String after){
@@ -103,4 +134,6 @@ public class GithubGraphQlEndpoint {
             throw new RuntimeException("Error while getting repos",e);
         }
     }
+
+
 }

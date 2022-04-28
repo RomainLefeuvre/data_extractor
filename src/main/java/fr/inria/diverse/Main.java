@@ -13,7 +13,7 @@ public class Main implements QuarkusApplication  {
         @Override
         public int run(String... args) throws Exception {
             System.out.println("Do startup logic here");
-            de.extractFromDescription();
+            de.extract();
             return 0;
     }
 }

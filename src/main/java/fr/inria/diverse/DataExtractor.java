@@ -19,35 +19,16 @@ import java.util.regex.Pattern;
 public class DataExtractor {
     ObjectMapper mapper = new ObjectMapper();
 
-    GitHub github;
     @Inject
     GithubGraphQlEndpoint graphQlEndpoint;
     public DataExtractor()   {
-        /*connectToGithub();
-        int t = 0;
-        try {
-            t = github.getRateLimit().getLimit();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(t);*/
 
     }
 
-    public void extract() throws IOException {
-
-        PagedIterable<GHRepository> t= github.searchRepositories().q("https://play.google.com/store/apps/details in:description").list().withPageSize(100);
-   /* int c=0;
-        PagedIterator<GHRepository> it= t.iterator();
-        while(it.hasNext()){
-           List<GHRepository> res = it.nextPage();
-            c++;
-            System.out.println("ok "+c);
-
-        }*/
-        List<GHRepository> l =t.iterator().nextPage();
-        List<GHRepository> list = t.toList();
-        System.out.println("ok");
+    public void extract(){
+        List<Result> res =extractFromDescription();
+        res.addAll(extractFromReadme());
+        save("results/res.json",res);
     }
 
     public List<Result> extractFromDescription(){
@@ -62,7 +43,35 @@ public class DataExtractor {
         List<GithubGraphQLRepository> reposWithMoreThanOneUri = new LinkedList<>();
 
         for(GithubGraphQLRepository repo : repos){
-            Set<String> gPlayUris = extractGooglePlayUri(repo.getdescriptionHTML());
+            Set<String> gPlayUris = extractGooglePlayUri(repo.getDescriptionHTML());
+            int nbUri = gPlayUris.size();
+            if(nbUri==1){
+                String gPlayUri=gPlayUris.iterator().next();
+                results.add(new Result(repo.getUrl(),repo.getSshUrl(),gPlayUri));
+            }else if(nbUri==0){
+                reposWithoutURI.add(repo);
+            }else{
+                reposWithMoreThanOneUri.add(repo);
+            }
+        }
+        save("results/missed/description/reposWithoutURI.json",reposWithoutURI);
+        save("results/missed/description/reposWithMoreThanOneUri.json",reposWithMoreThanOneUri);
+
+        return results;
+    }
+    public List<Result> extractFromReadme(){
+        List<GithubGraphQLRepository> repos= graphQlEndpoint.getAllRepositoriesMatchingReadme();
+        this.save("results/readme_raw.json",repos);
+        return extractFromReadme(repos);
+    }
+
+    public List<Result> extractFromReadme(List<GithubGraphQLRepository> repos){
+        List<Result> results =new LinkedList<>();
+        List<GithubGraphQLRepository> reposWithoutURI = new LinkedList<>();
+        List<GithubGraphQLRepository> reposWithMoreThanOneUri = new LinkedList<>();
+
+        for(GithubGraphQLRepository repo : repos){
+            Set<String> gPlayUris = extractGooglePlayUri(repo.getReadme().getText());
             int nbUri = gPlayUris.size();
             if(nbUri==1){
                 String gPlayUri=gPlayUris.iterator().next();
@@ -79,20 +88,12 @@ public class DataExtractor {
         return results;
     }
 
-
-    private void connectToGithub()  {
-
-
-        try {
-           github = GitHubBuilder.fromPropertyFile().build();
-        } catch (IOException e) {
-            throw new RuntimeException("Error while connecting to Github",e);
-        }
-    }
-
     private <T> void save(String fileName,T object){
         try {
-            mapper.writeValue(new File("results/desc_raw.json"),object);
+            File f =new File(fileName);
+            File parent = f.getParentFile();
+            f.getParentFile().mkdirs();
+            mapper.writeValue(f,object);
         } catch (IOException e) {
             throw new RuntimeException("Error while saving results",e);
         }

@@ -9,38 +9,6 @@ public class GithubGraphQLRepository {
     private String url;
     private String sshUrl;
 
-    public String getDescriptionHTML() {
-        return descriptionHTML;
-    }
-
-    public void setDescriptionHTML(String descriptionHTML) {
-        this.descriptionHTML = descriptionHTML;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getSshUrl() {
-        return sshUrl;
-    }
-
-    public void setSshUrl(String sshUrl) {
-        this.sshUrl = sshUrl;
-    }
-
-    public GithubGraphQLStars getStars() {
-        return stars;
-    }
-
-    public void setStars(GithubGraphQLStars stars) {
-        this.stars = stars;
-    }
-
     public GithubGraphQLReadme getReadme() {
         return readme;
     }
@@ -65,11 +33,35 @@ public class GithubGraphQLRepository {
         this.name = name;
     }
 
-    public String getdescriptionHTML() {
+    public String getDescriptionHTML() {
         return descriptionHTML;
     }
 
-    public void setdescriptionHTML(String descriptionHtml) {
-        this.descriptionHTML = descriptionHtml;
+    public void setDescriptionHTML(String descriptionHTML) {
+        this.descriptionHTML = descriptionHTML;
+    }
+
+    public GithubGraphQLStars getStars() {
+        return stars;
+    }
+
+    public void setStars(GithubGraphQLStars stars) {
+        this.stars = stars;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getSshUrl() {
+        return sshUrl;
+    }
+
+    public void setSshUrl(String sshUrl) {
+        this.sshUrl = sshUrl;
     }
 }
