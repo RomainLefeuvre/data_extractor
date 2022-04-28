@@ -70,21 +70,22 @@ public class DataExtractor {
         List<GithubGraphQLRepository> reposWithoutURI = new LinkedList<>();
         List<GithubGraphQLRepository> reposWithMoreThanOneUri = new LinkedList<>();
 
-        for(GithubGraphQLRepository repo : repos){
-            Set<String> gPlayUris = extractGooglePlayUri(repo.getReadme().getText());
-            int nbUri = gPlayUris.size();
-            if(nbUri==1){
-                String gPlayUri=gPlayUris.iterator().next();
-                results.add(new Result(repo.getUrl(),repo.getSshUrl(),gPlayUri));
-            }else if(nbUri==0){
-                reposWithoutURI.add(repo);
-            }else{
-                reposWithMoreThanOneUri.add(repo);
+        for(GithubGraphQLRepository repo : repos) {
+            if (repo.getReadme() !=null && repo.getReadme().getText() != null) {
+                Set<String> gPlayUris = extractGooglePlayUri(repo.getReadme().getText());
+                int nbUri = gPlayUris.size();
+                if (nbUri == 1) {
+                    String gPlayUri = gPlayUris.iterator().next();
+                    results.add(new Result(repo.getUrl(), repo.getSshUrl(), gPlayUri));
+                } else if (nbUri == 0) {
+                    reposWithoutURI.add(repo);
+                } else {
+                    reposWithMoreThanOneUri.add(repo);
+                }
             }
+            save("results/missed/readme/reposWithoutURI.json", reposWithoutURI);
+            save("results/missed/readme/reposWithMoreThanOneUri.json", reposWithMoreThanOneUri);
         }
-        save("results/missed/description/reposWithoutURI.json",reposWithoutURI);
-        save("results/missed/description/reposWithMoreThanOneUri.json",reposWithMoreThanOneUri);
-
         return results;
     }
 
@@ -93,7 +94,7 @@ public class DataExtractor {
             File f =new File(fileName);
             File parent = f.getParentFile();
             f.getParentFile().mkdirs();
-            mapper.writeValue(f,object);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(f,object);
         } catch (IOException e) {
             throw new RuntimeException("Error while saving results",e);
         }
