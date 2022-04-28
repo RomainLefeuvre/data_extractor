@@ -1,0 +1,902 @@
+[
+  {
+    "readme": null,
+    "name": "2048",
+    "descriptionHTML": "<div>A small clone of 1024 (<a href=\"https://play.google.com/store/apps/details?id=com.veewo.a1024\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.veewo.a1024</a>)</div>",
+    "stars": {
+      "totalCount": 11212
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-open-project",
+    "descriptionHTML": "<div>A categorized collection of Android Open Source Projects,  More powerful web version:</div>",
+    "stars": {
+      "totalCount": 30906
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "pslab-android",
+    "descriptionHTML": "<div>PSLab Android App <a href=\"https://play.google.com/store/apps/details?id=io.pslab\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=io.pslab</a>\n</div>",
+    "stars": {
+      "totalCount": 1992
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "phimpme-android",
+    "descriptionHTML": "<div>Phimp.me Photo Imaging and Picture Editor <a href=\"https://play.google.com/store/apps/details?id=org.fossasia.phimpme\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=org.fossasia.phimpme</a>\n</div>",
+    "stars": {
+      "totalCount": 2489
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "open-event-organizer-android",
+    "descriptionHTML": "<div>Open Event Mobile App for Organizers and Entry Managers <a href=\"https://play.google.com/store/apps/details?id=com.eventyay.organizer\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.eventyay.organizer</a>\n</div>",
+    "stars": {
+      "totalCount": 1761
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "hybrid",
+    "descriptionHTML": "<div>[I don't have time to work on this anymore. Use at your own risk] Build WordPress based PWA, iOS, Android &amp; Windows phones apps in minutes!</div>",
+    "stars": {
+      "totalCount": 1021
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "pixel-dungeon",
+    "descriptionHTML": "<div>Traditional roguelike game with pixel-art graphics and simple interface</div>",
+    "stars": {
+      "totalCount": 3030
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "google-play-scraper",
+    "descriptionHTML": "<div>Node.js scraper to get data from Google Play</div>",
+    "stars": {
+      "totalCount": 1689
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "BlurEffectForAndroidDesign",
+    "descriptionHTML": "<div>Sample to show how to implement blur graphical tricks</div>",
+    "stars": {
+      "totalCount": 1978
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "AndroidSlidingUpPanel",
+    "descriptionHTML": "<div>This library provides a simple way to add a draggable sliding up panel (popularized by Google Music and Google Maps) to your Android application. Brought to you by Umano.</div>",
+    "stars": {
+      "totalCount": 9411
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "OmRecorder",
+    "descriptionHTML": "<div>A Simple Pcm / Wav audio recorder with nice api. <a href=\"https://play.google.com/store/apps/details?id=com.kingbull.omrecorder\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.kingbull.omrecorder</a>\n</div>",
+    "stars": {
+      "totalCount": 666
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Learn-OpenGLES-Tutorials",
+    "descriptionHTML": "<div>Welcome to the Learn OpenGL ES project home page! This project is a repository for the lessons and tutorials over at <a href=\"http://www.learnopengles.com/\" rel=\"nofollow\">http://www.learnopengles.com/</a>\n</div>",
+    "stars": {
+      "totalCount": 978
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Bigbang",
+    "descriptionHTML": "<div>The source code of Bigbang App: <a href=\"http://www.coolapk.com/apk/com.forfan.bigbang\" rel=\"nofollow\">http://www.coolapk.com/apk/com.forfan.bigbang</a>  /   <a href=\"https://play.google.com/store/apps/details?id=com.forfan.bigbang\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.forfan.bigbang</a>\n</div>",
+    "stars": {
+      "totalCount": 659
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-eye",
+    "descriptionHTML": "<div>Change your android phone to surveillance camera</div>",
+    "stars": {
+      "totalCount": 1062
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "awesome-opensource-apps",
+    "descriptionHTML": "<div>\n<g-emoji class=\"g-emoji\" alias=\"house\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f3e0.png\">\uD83C\uDFE0</g-emoji><g-emoji class=\"g-emoji\" alias=\"information_source\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2139.png\">ℹ️</g-emoji> Curated list of awesome open source crafted web &amp; mobile applications - Learn, Fork, Contribute &amp; Most Importantly Enjoy!</div>",
+    "stars": {
+      "totalCount": 2305
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "forum",
+    "descriptionHTML": "<div>蓝灯(Lantern)官方论坛</div>",
+    "stars": {
+      "totalCount": 475
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "watermaniac",
+    "descriptionHTML": "<div>Watermaniac - Flutter - <a href=\"https://play.google.com/store/apps/details?id=com.rmzsoft.watermaniac&amp;hl=pl\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.rmzsoft.watermaniac&amp;hl=pl</a>\n</div>",
+    "stars": {
+      "totalCount": 135
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "DroidKnights2020_App",
+    "descriptionHTML": "<div><a href=\"https://play.google.com/store/apps/details?id=com.droidknights.app2020\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.droidknights.app2020</a></div>",
+    "stars": {
+      "totalCount": 133
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "NetWorkPacketCapture",
+    "descriptionHTML": "<div>It is used to capture network packet via Android VPN.</div>",
+    "stars": {
+      "totalCount": 1547
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Android-ParallaxHeaderViewPager",
+    "descriptionHTML": "<div>DEPRECATED</div>",
+    "stars": {
+      "totalCount": 1401
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "RedReader",
+    "descriptionHTML": "<div>An unofficial open source Reddit client for Android.</div>",
+    "stars": {
+      "totalCount": 1317
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "MaterialDesignDemo",
+    "descriptionHTML": "<div>A beautiful app designed with Material Design.</div>",
+    "stars": {
+      "totalCount": 1411
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "LollipopShowcase",
+    "descriptionHTML": "<div>A simple app to showcase Androids Material Design and some of the cool new cool stuff in Android Lollipop. RecyclerView, CardView, ActionBarDrawerToggle, DrawerLayout, Animations, Android Compat Design, Toolbar</div>",
+    "stars": {
+      "totalCount": 1775
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "ACEMusicPlayer",
+    "descriptionHTML": "<div>A material music player for the android platform, git it here : <a href=\"https://play.google.com/store/apps/details?id=com.aniruddhc.acemusic.player&amp;hl=en\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.aniruddhc.acemusic.player&amp;hl=en</a>\n</div>",
+    "stars": {
+      "totalCount": 310
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "trust-wallet-android-source",
+    "descriptionHTML": "<div>Trust - Ethereum Wallet for Android  (Inactive Repository)</div>",
+    "stars": {
+      "totalCount": 323
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "LauncherTV",
+    "descriptionHTML": "<div>Android Simple TV Launcher <a href=\"https://play.google.com/store/apps/details?id=org.cosinus.launchertv\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=org.cosinus.launchertv</a>\n</div>",
+    "stars": {
+      "totalCount": 73
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Interactive-animation",
+    "descriptionHTML": "<div>Collect android animation</div>",
+    "stars": {
+      "totalCount": 749
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "play-scraper",
+    "descriptionHTML": "<div>A web scraper to retrieve application data from the Google Play Store.</div>",
+    "stars": {
+      "totalCount": 225
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "WorldMap",
+    "descriptionHTML": "<div>Android Scrolling Background Bitmap Example</div>",
+    "stars": {
+      "totalCount": 1127
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Tower",
+    "descriptionHTML": "<div>Ground Control Station for Android Devices</div>",
+    "stars": {
+      "totalCount": 598
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "docker-gitlab",
+    "descriptionHTML": "<div>Dockerized GitLab</div>",
+    "stars": {
+      "totalCount": 7241
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-chess",
+    "descriptionHTML": "<div>Chess game for Android.</div>",
+    "stars": {
+      "totalCount": 298
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "GraphView-Demos",
+    "descriptionHTML": "<div>Examples for my Android GraphView library</div>",
+    "stars": {
+      "totalCount": 295
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "gplaycli",
+    "descriptionHTML": "<div>Google Play Downloader via Command line</div>",
+    "stars": {
+      "totalCount": 900
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "NGA-CLIENT-VER-OPEN-SOURCE",
+    "descriptionHTML": "<div>NGA客户端开源版代码仓库</div>",
+    "stars": {
+      "totalCount": 432
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "GoogleDateTimePickers",
+    "descriptionHTML": "<div>New Google Date and time pickers</div>",
+    "stars": {
+      "totalCount": 366
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "newsplus",
+    "descriptionHTML": "<div>News+ is a simple, fast and intuitive feed/rss reader for Android, featuring beautiful themes, podcast support and full offline support.</div>",
+    "stars": {
+      "totalCount": 335
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "parity-signer",
+    "descriptionHTML": "<div>Air-gapped crypto wallet.</div>",
+    "stars": {
+      "totalCount": 406
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "FFmpeg-Video-Editor-Android",
+    "descriptionHTML": "<div>Sample android project using ffmpeg for cutting and compressing video,reversing video,extracting image frames from video,extracting audio from video,add fade in fade out effect,create fast and slow motion video</div>",
+    "stars": {
+      "totalCount": 463
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "iot-manager-demo",
+    "descriptionHTML": "<div>Demo sketches for IoT Manager <a href=\"https://play.google.com/store/apps/details?id=ru.esp8266.iotmanager\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=ru.esp8266.iotmanager</a>\n</div>",
+    "stars": {
+      "totalCount": 59
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "paco",
+    "descriptionHTML": "<div>The Paco behavioral science mobile research platform</div>",
+    "stars": {
+      "totalCount": 319
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "smashing_android_ui_example_app",
+    "descriptionHTML": "<div></div>",
+    "stars": {
+      "totalCount": 279
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "App-Ops-issue-tracker",
+    "descriptionHTML": "<div>Issue tracker for <a href=\"https://play.google.com/store/apps/details?id=rikka.appops\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=rikka.appops</a>\n</div>",
+    "stars": {
+      "totalCount": 96
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "JoyConDroid",
+    "descriptionHTML": "<div>For issue tracking purposes: <a href=\"https://play.google.com/store/apps/details?id=com.rdapps.gamepad\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.rdapps.gamepad</a>\n</div>",
+    "stars": {
+      "totalCount": 102
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "AppLocker",
+    "descriptionHTML": "<div>Twinone App Locker (Android app)</div>",
+    "stars": {
+      "totalCount": 87
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Android-SSL-TrustKiller",
+    "descriptionHTML": "<div>Bypass SSL certificate pinning for most applications</div>",
+    "stars": {
+      "totalCount": 630
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "my_iptv",
+    "descriptionHTML": "<div>我自己搜集整理的iptv频道</div>",
+    "stars": {
+      "totalCount": 479
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Android-nRF-Connect",
+    "descriptionHTML": "<div>Documentation and issue tracker for nRF Connect for Android.</div>",
+    "stars": {
+      "totalCount": 900
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "trinea-download",
+    "descriptionHTML": "<div>Some open project apk files, or other files upload by trinea.cn</div>",
+    "stars": {
+      "totalCount": 723
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-quiz-template",
+    "descriptionHTML": "<div>An android library project to use for different types of multiple-answer quiz applications. In particular the templates provides 2 kind of quiz mode (educational games or trivia), a quiz domain model and logic and a lot of extensible UI elements.</div>",
+    "stars": {
+      "totalCount": 156
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "StorageRedirect-assets",
+    "descriptionHTML": "<div>Assets (rules, apks etc) for Storage Redirect app.</div>",
+    "stars": {
+      "totalCount": 518
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "GeometricWeather",
+    "descriptionHTML": "<div>A Material Design Weather Application</div>",
+    "stars": {
+      "totalCount": 949
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "browser-deeplink",
+    "descriptionHTML": "<div>Redirect mobile website users to your native iOS and/or Android app</div>",
+    "stars": {
+      "totalCount": 463
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-pathview",
+    "descriptionHTML": "<div>Android view with both path from constructed path or from svg.</div>",
+    "stars": {
+      "totalCount": 2894
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "zulip-android",
+    "descriptionHTML": "<div>Legacy Zulip Android app</div>",
+    "stars": {
+      "totalCount": 412
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "ShortcutBadger",
+    "descriptionHTML": "<div>An Android library supports badge notification like iOS in Samsung, LG, Sony and HTC launchers.</div>",
+    "stars": {
+      "totalCount": 7167
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Simple-Solitaire",
+    "descriptionHTML": "<div>[Android] Simple Solitaire game collection</div>",
+    "stars": {
+      "totalCount": 201
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "nfcard",
+    "descriptionHTML": "<div>NFCard is an Android App. It can read contactless IC card use NFC hadware. </div>",
+    "stars": {
+      "totalCount": 359
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "GithubTrends",
+    "descriptionHTML": "<div>It's a GitHub Trending repositories Viewer with Material Design.</div>",
+    "stars": {
+      "totalCount": 635
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "react-native-push-notification",
+    "descriptionHTML": "<div>React Native Local and Remote Notifications</div>",
+    "stars": {
+      "totalCount": 6347
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "pychromecast",
+    "descriptionHTML": "<div>Library for Python 3 to communicate with the Google Chromecast.</div>",
+    "stars": {
+      "totalCount": 2310
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "GpsTracker",
+    "descriptionHTML": "<div>Google Map Gps Cell Phone Tracker</div>",
+    "stars": {
+      "totalCount": 699
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "friendspell",
+    "descriptionHTML": "<div>Party icebreaker game based on the Google Nearby API</div>",
+    "stars": {
+      "totalCount": 414
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "focus-android",
+    "descriptionHTML": "<div>Firefox Focus: The privacy browser - Browse like no one’s watching.</div>",
+    "stars": {
+      "totalCount": 1977
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "OriSim3D-Android",
+    "descriptionHTML": "<div>OriSim3D origami folding simulation on Android with openGL.</div>",
+    "stars": {
+      "totalCount": 292
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-tvheadend",
+    "descriptionHTML": "<div>Android + TV Headend + TV Input Framework</div>",
+    "stars": {
+      "totalCount": 183
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "ECommerce-App-Android",
+    "descriptionHTML": "<div>E-Commerce App for Android with Material Design Pattern</div>",
+    "stars": {
+      "totalCount": 515
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "RFAnalyzer",
+    "descriptionHTML": "<div>Spectrum Analyzer for Android using the HackRF</div>",
+    "stars": {
+      "totalCount": 684
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "M3U8",
+    "descriptionHTML": "<div>直播使用</div>",
+    "stars": {
+      "totalCount": 225
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "pwa-starter",
+    "descriptionHTML": "<div>Welcome to the PWABuilder pwa-starter! Looking to build a new Progressive Web App and not sure where to get started? This is what you are looking for!</div>",
+    "stars": {
+      "totalCount": 632
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "PlayNewsStandDemo",
+    "descriptionHTML": "<div>Demo app for achieving UI like the one used in latest Google Play Newsstand app.</div>",
+    "stars": {
+      "totalCount": 329
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "CryptoTracker",
+    "descriptionHTML": "<div>An app made using the Flutter framework that allows users to track information for over 1500 cryptocurrencies</div>",
+    "stars": {
+      "totalCount": 163
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "rootadb",
+    "descriptionHTML": "<div>restart adbd with root privileges</div>",
+    "stars": {
+      "totalCount": 152
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-vpn-client-ics-openvpn",
+    "descriptionHTML": "<div>\n<g-emoji class=\"g-emoji\" alias=\"star\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2b50.png\">⭐</g-emoji> Create your Android VPN App by using Android Studio and publish to Google Play Store <g-emoji class=\"g-emoji\" alias=\"robot\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f916.png\">\uD83E\uDD16</g-emoji>\n</div>",
+    "stars": {
+      "totalCount": 401
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Android-samples",
+    "descriptionHTML": "<div>This repository is used to store all controls' samples for the Telerik UI for Android suite.</div>",
+    "stars": {
+      "totalCount": 148
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "firewalla",
+    "descriptionHTML": "<div><a href=\"http://firewalla.com\" rel=\"nofollow\">http://firewalla.com</a></div>",
+    "stars": {
+      "totalCount": 397
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Fresh-Food-Finder",
+    "descriptionHTML": "<div>Fresh Food Finder PhoneGap application</div>",
+    "stars": {
+      "totalCount": 149
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-nfc-paycardreader",
+    "descriptionHTML": "<div>NFC card reader Android app. Currently reads the german GeldKarte and some credit cards.</div>",
+    "stars": {
+      "totalCount": 124
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-midisuite",
+    "descriptionHTML": "<div>Android MIDI test programs and examples.</div>",
+    "stars": {
+      "totalCount": 122
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Yaaic",
+    "descriptionHTML": "<div>Yaaic (Yet Another Android IRC Client) is as the name already says an Internet Relay Chat (IRC) client for Android devices.</div>",
+    "stars": {
+      "totalCount": 327
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "materialup",
+    "descriptionHTML": "<div>MaterialUp Android app <a href=\"https://play.google.com/store/apps/details?id=org.goodev.material\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=org.goodev.material</a>\n</div>",
+    "stars": {
+      "totalCount": 42
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "bookdash-android-app",
+    "descriptionHTML": "<div>An Android app that lets you download free children's books in different languages from non-profit publisher Book Dash</div>",
+    "stars": {
+      "totalCount": 675
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "ColorNamer",
+    "descriptionHTML": "<div>The code behind the ColorNamer app, <a href=\"https://play.google.com/store/apps/details?id=com.color.colornamer&amp;hl=en\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=com.color.colornamer&amp;hl=en</a>\n</div>",
+    "stars": {
+      "totalCount": 23
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "IP-Camera-Bridge",
+    "descriptionHTML": "<div>A MJPEG video streaming and virtual microphone driver for Windows which can make your Windows applications using IP Camera as WebCam with audio input. </div>",
+    "stars": {
+      "totalCount": 339
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "android-autostarts",
+    "descriptionHTML": "<div>Tool to manage autostarts (broadcast receivers) on an Android device.</div>",
+    "stars": {
+      "totalCount": 172
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "google-play-scraper",
+    "descriptionHTML": "<div>A PHP scraper to get app data from Google Play</div>",
+    "stars": {
+      "totalCount": 115
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "VHEditor-Android",
+    "descriptionHTML": "<div>Run Code-server on Android</div>",
+    "stars": {
+      "totalCount": 506
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "CasinosClient",
+    "descriptionHTML": "<div>果派德州客户端源代码，使用Unity3D引擎。</div>",
+    "stars": {
+      "totalCount": 269
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "audiobookapp",
+    "descriptionHTML": "<div>Audiobook mobile application accomplished with React Native and React ecosystem, just a single code base.</div>",
+    "stars": {
+      "totalCount": 247
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "phonegap-app-developer",
+    "descriptionHTML": "<div>PhoneGap Developer App</div>",
+    "stars": {
+      "totalCount": 2025
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "ImmortalPlayer",
+    "descriptionHTML": "<div>Free audio/video player component for Android with cache, FTP, peering, hw accel, background play, pseudo-streaming and more...</div>",
+    "stars": {
+      "totalCount": 210
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "RemoteDroid",
+    "descriptionHTML": "<div>App to control your android device from another Android device or a PC over the internet connection</div>",
+    "stars": {
+      "totalCount": 427
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Space-Navigation-View",
+    "descriptionHTML": "<div>Space Navigation is a library allowing easily integrate fully customizable Google Spaces like navigation to your app.</div>",
+    "stars": {
+      "totalCount": 2004
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "cordova-plugin-googleplus",
+    "descriptionHTML": "<div>\n<g-emoji class=\"g-emoji\" alias=\"heavy_plus_sign\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2795.png\">➕</g-emoji> Cordova plugin to login with Google Sign-In on iOS and Android</div>",
+    "stars": {
+      "totalCount": 561
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "FlipImageView",
+    "descriptionHTML": "<div>DEPRECATED. Use API14+ and make your animations easier! Small android lib allowing you to make a flip imageview easily, by extending FlipImageView.</div>",
+    "stars": {
+      "totalCount": 403
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "BlackLight",
+    "descriptionHTML": "<div>A light Sina Weibo client for Android</div>",
+    "stars": {
+      "totalCount": 885
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "tomahawk-android",
+    "descriptionHTML": "<div>Tomahawk's Android Music Player</div>",
+    "stars": {
+      "totalCount": 668
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "Node-Media-Server",
+    "descriptionHTML": "<div>A Node.js implementation of RTMP/HTTP-FLV/WS-FLV/HLS/DASH/MP4 Media Server</div>",
+    "stars": {
+      "totalCount": 4747
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "SensorDashboard",
+    "descriptionHTML": "<div>A sensor dashboard for Android plotting all sensor data of your Android wearable.</div>",
+    "stars": {
+      "totalCount": 222
+    },
+    "fork": false
+  },
+  {
+    "readme": null,
+    "name": "bochs",
+    "descriptionHTML": "<div>Bochs IA-32 Emulator Project (android port) <a href=\"https://play.google.com/store/apps/details?id=net.sourceforge.bochs\" rel=\"nofollow\">https://play.google.com/store/apps/details?id=net.sourceforge.bochs</a>\n</div>",
+    "stars": {
+      "totalCount": 93
+    },
+    "fork": false
+  }
+]
