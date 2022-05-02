@@ -19,4 +19,10 @@ public class DataExtractorTest {
         Assertions.assertEquals(res.size(),1);
     }
 
+    @Test
+    public void extractGooglePlayUriTest2(){
+        Set<String> res =de.extractGooglePlayUri("kjkjkhttps://play.google.com/store/apps/details?id=net.sourceforge.bochs\" rel=\"nofolhttps://play.google.com/store/apps/details?id=net.sourceforqsdsqdqsdge.bochslow\">https://play.google.com/store/apps/details?id=net.sourceforge.bochs</a>\n</div>");
+        Assertions.assertEquals(res.size(),2);
+    }
+
 }

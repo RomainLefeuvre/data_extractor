@@ -26,13 +26,14 @@ public class DataExtractor {
     }
 
     public void extract(){
-        List<Result> res =extractFromDescription();
+        HashSet<Result> res = new HashSet<>();
+        res.addAll(extractFromDescription());
         res.addAll(extractFromReadme());
         save("results/res.json",res);
     }
 
     public List<Result> extractFromDescription(){
-       List<GithubGraphQLRepository> repos= graphQlEndpoint.getAllRepositoriesMatchingDescription();
+       List<GithubGraphQLRepository> repos= graphQlEndpoint.getAllRepositories(false);
        this.save("results/desc_raw.json",repos);
        return extractFromDescription(repos);
     }
@@ -60,7 +61,7 @@ public class DataExtractor {
         return results;
     }
     public List<Result> extractFromReadme(){
-        List<GithubGraphQLRepository> repos= graphQlEndpoint.getAllRepositoriesMatchingReadme();
+        List<GithubGraphQLRepository> repos= graphQlEndpoint.getAllRepositories(true);
         this.save("results/readme_raw.json",repos);
         return extractFromReadme(repos);
     }

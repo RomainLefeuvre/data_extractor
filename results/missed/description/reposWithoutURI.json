@@ -1,12 +1,22 @@
 [ {
   "readme" : null,
-  "name" : "Rovers-API",
-  "descriptionHTML" : "<div>an API for creating Rovers Actions for the Rovers app: <a href=\"http://play.google.com/store/apps/details?id=com.schiztech.rovers.app\" rel=\"nofollow\">http://play.google.com/store/apps/details?id=com.schiztech.rovers.app</a>\n</div>",
+  "name" : "mybooks-android",
+  "descriptionHTML" : "<div>An application to keep track of the books I read. The serialized form (json) is saved to Dropbox. See <a href=\"http://play.google.com/store/apps/details?id=ch.derlin.mybooks\" rel=\"nofollow\">http://play.google.com/store/apps/details?id=ch.derlin.mybooks</a>\n</div>",
   "stars" : {
-    "totalCount" : 6
+    "totalCount" : 1
   },
-  "url" : "https://github.com/doryehuda/Rovers-API",
-  "sshUrl" : "git@github.com:doryehuda/Rovers-API.git",
+  "url" : "https://github.com/derlin/mybooks-android",
+  "sshUrl" : "git@github.com:derlin/mybooks-android.git",
+  "fork" : false
+}, {
+  "readme" : null,
+  "name" : "My-Mp3-Cutter",
+  "descriptionHTML" : "<div>This is a simple MP3 Cutter Application which can cut a specific part of an audio file. You can also append one song after another and set the newly created files as ringtone for specific contact, notification,alarm or default ringtone. It contains banner ads. This project was developed by me in my free time just for practice. It is an attempt to clone this application:  <a href=\"http://play.google.com/store/apps/details?id=com.betteridea.ringtone.mp3.editor\" rel=\"nofollow\">http://play.google.com/store/apps/details?id=com.betteridea.ringtone.mp3.editor</a>\n</div>",
+  "stars" : {
+    "totalCount" : 7
+  },
+  "url" : "https://github.com/sudhanshujaisani38/My-Mp3-Cutter",
+  "sshUrl" : "git@github.com:sudhanshujaisani38/My-Mp3-Cutter.git",
   "fork" : false
 }, {
   "readme" : null,
@@ -19,13 +29,15 @@
   "sshUrl" : "git@github.com:hasangonen91/TRAFIK-25-CAR-GAME-UNITY.git",
   "fork" : false
 }, {
-  "readme" : null,
-  "name" : "My-Mp3-Cutter",
-  "descriptionHTML" : "<div>This is a simple MP3 Cutter Application which can cut a specific part of an audio file. You can also append one song after another and set the newly created files as ringtone for specific contact, notification,alarm or default ringtone. It contains banner ads. This project was developed by me in my free time just for practice. It is an attempt to clone this application:  <a href=\"http://play.google.com/store/apps/details?id=com.betteridea.ringtone.mp3.editor\" rel=\"nofollow\">http://play.google.com/store/apps/details?id=com.betteridea.ringtone.mp3.editor</a>\n</div>",
-  "stars" : {
-    "totalCount" : 7
+  "readme" : {
+    "text" : "# Pokedex\nA simple pokedex App -> A design of this app will be based on https://play.google.com/store/apps/details?id=in.timemac.dev.simplepokedex2 -> According to that, it will contain a view that will show pokemons in ascendant order from 1 in the main view -> It will also allow to filter pokemons by using a searchbar in the top of the screen, as well as an implementation of a bottom navigation view that will allow an user to search pokemons by type -> By tapping on a pokemon's picture, the user will be able to check additional information about that pokemon -> The information of the app will be taken from https://pokeapi.co/ -> Animations, and other aspects of frontend design will be added as the project goes further, but nothing has been explicitly required.\n"
   },
-  "url" : "https://github.com/sudhanshujaisani38/My-Mp3-Cutter",
-  "sshUrl" : "git@github.com:sudhanshujaisani38/My-Mp3-Cutter.git",
+  "name" : "Pokedex",
+  "descriptionHTML" : "<div>A simple pokedex App -&gt; A design of this app will be based on https//play.google.com/store/apps/details?id=in.timemac.dev.simplepokedex2 -&gt; According to that, it will contain a view that will show pokemons in ascendant order from 1 in the main view -&gt; It will also allow to filter pokemons by using a searchbar in the top of the screen, as well as an implementation of a bottom navigation view that will allow an user to search pokemons by type -&gt; By tapping on a pokemon's picture, the user will be able to check additional information about that pokemon -&gt; The information of the app will be taken from <a href=\"https://pokeapi.co/\" rel=\"nofollow\">https://pokeapi.co/</a> -&gt; Animations, and other aspects of frontend design will be added as the project goes further, but nothing has been explicitly required.</div>",
+  "stars" : {
+    "totalCount" : 0
+  },
+  "url" : "https://github.com/Fredest9112/Pokedex",
+  "sshUrl" : "git@github.com:Fredest9112/Pokedex.git",
   "fork" : false
 } ]

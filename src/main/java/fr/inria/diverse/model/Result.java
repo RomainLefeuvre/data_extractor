@@ -1,5 +1,7 @@
 package fr.inria.diverse.model;
 
+import java.util.Objects;
+
 public class Result {
     private String repoUrl;
     private String sshRepoUrl;
@@ -33,5 +35,18 @@ public class Result {
 
     public void setGooglePlayUrl(String googlePlayUrl) {
         this.googlePlayUrl = googlePlayUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result result = (Result) o;
+        return Objects.equals(repoUrl, result.repoUrl) && Objects.equals(sshRepoUrl, result.sshRepoUrl) && Objects.equals(googlePlayUrl, result.googlePlayUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(repoUrl, sshRepoUrl, googlePlayUrl);
     }
 }
