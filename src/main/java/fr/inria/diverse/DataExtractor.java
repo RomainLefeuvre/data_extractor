@@ -20,7 +20,7 @@ import static fr.inria.diverse.Utils.save;
 @ApplicationScoped
 public class DataExtractor {
     ObjectMapper mapper = new ObjectMapper();
-    Pattern p = Pattern.compile("(https://play.google.com/store/apps/details\\?id=[a-zA-Z0-9.]*)");
+    Pattern p = Pattern.compile("(https?://play.google.com/store/apps/details\\?id=[a-zA-Z0-9.]*)");
 
     @Inject
     FileConfig config;
@@ -37,10 +37,10 @@ public class DataExtractor {
     public HashSet<Result> extract(){
         HashSet<Result> res = new HashSet<>();
 
-        List<RawRepository> rawRepoHavingGplayUriInDesc =graphQlEndpoint.getAllRepositories(graphQlEndpoint.decriptionCriteria,true);
-        res.addAll(extractFromRawResult(rawRepoHavingGplayUriInDesc ,config.missed_description_reposWithoutURI(),config.missed_description_reposWithMoreThanOneUri()));
+        //List<RawRepository> rawRepoHavingGplayUriInDesc =graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInDescription(true);
+        //res.addAll(extractFromRawResult(rawRepoHavingGplayUriInDesc ,config.missed_description_reposWithoutURI(),config.missed_description_reposWithMoreThanOneUri()));
 
-        List<RawRepository> rawRepoHavingGplayUriInReadme =graphQlEndpoint.getAllRepositories(graphQlEndpoint.readmeCriteria,true);
+        List<RawRepository> rawRepoHavingGplayUriInReadme =graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInReadme(true);
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInReadme ,config.missed_readme_reposWithoutURI(),config.missed_readme_reposWithMoreThanOneUri()));
 
         System.out.println("Found "+res.size()+" different result");

@@ -4,8 +4,7 @@ import fr.inria.diverse.config.FileConfig;
 import fr.inria.diverse.model.RawRepository;
 import fr.inria.diverse.model.exception.BusinessCheckedException;
 import fr.inria.diverse.model.exception.ErrorCode;
-import fr.inria.diverse.model.graphql.GithubGraphQLRepository;
-import fr.inria.diverse.model.graphql.GithubGraphQLResponse;
+import fr.inria.diverse.model.graphql.*;
 import io.smallrye.graphql.client.GraphQLClient;
 import io.smallrye.graphql.client.Response;
 import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClient;
@@ -23,20 +22,26 @@ import static fr.inria.diverse.Utils.save;
 
 @ApplicationScoped
 public class GithubGraphQlEndpoint {
-    public Criteria readmeCriteria = new ReadmeCriteria();
-    public Criteria decriptionCriteria = new DescriptionCriteria();
-
     private DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssxxx");
     private ZonedDateTime startDate = LocalDateTime.of(2013, 8, 1, 0, 0).atZone(ZoneId.of("Europe/Paris"));
-    private int defaultIncrementInMinutes = 60 * 24 * 60;
 
+    @Inject
+    private ReadmeCriteria readmeCriteria;
+    @Inject
+    private DescriptionCriteria decriptionCriteria;
     @Inject
     @GraphQLClient("github-graphql")
     DynamicGraphQLClient githubClient;
-
     @Inject
     FileConfig config;
 
+    public List<RawRepository> getAllRawRepositoriesHavingGplayLinkInReadme(boolean checkpoint){
+        return this.getAllRepositories(this.readmeCriteria,checkpoint);
+    }
+
+    public List<RawRepository> getAllRawRepositoriesHavingGplayLinkInDescription(boolean checkpoint){
+        return this.getAllRepositories(this.decriptionCriteria,checkpoint);
+    }
     /**
      * Query Github GraphQL API to find repositories that contain a link to a google play application
      * It can search either on readme or the description
@@ -44,7 +49,7 @@ public class GithubGraphQlEndpoint {
      * @param criteria wether it should search on the readme else in description
      * @return the corresponding list of GithubGraphQLRepository
      */
-    public List<RawRepository> getAllRepositories(Criteria criteria, boolean checkpoint) {
+    private List<RawRepository> getAllRepositories(Criteria criteria, boolean checkpoint) {
         System.out.println("Getting all repo containing a google play uri in " + criteria.getCriteriaName());
         List<GithubGraphQLRepository> ghRepos = new LinkedList<>();
         //Due to Github limitation we need to decompose our requests to request returning less than 1k results. Then we can
@@ -54,10 +59,11 @@ public class GithubGraphQlEndpoint {
         ZonedDateTime currentIntervalStart = null;
         ZonedDateTime currentIntervalEnd = startDate;
         ZonedDateTime today = ZonedDateTime.now();
+
         //We choose to express increment in minutes because some day granularity is too big in some cases ex : 2017-10-26
         //The time interval should be adaptable, in the following code the intervale is divided by 2 each time an error is
         //thrown
-        int incrementInMinutes = defaultIncrementInMinutes;
+        int incrementInMinutes = criteria.getDefaultIncrementInMinutes();
         //Todo : find a way to do it in a parrallel way (divide by time interval)
         do {
             //If not in first iteration
@@ -81,7 +87,7 @@ public class GithubGraphQlEndpoint {
                     continue;
                 }
             }
-            incrementInMinutes = defaultIncrementInMinutes;
+            incrementInMinutes = criteria.getDefaultIncrementInMinutes();
             System.out.println("Res Size :" + ghRepos.size());
             //For next iteration
             //If not in first iteration
@@ -100,6 +106,8 @@ public class GithubGraphQlEndpoint {
         }
         List<RawRepository> res = ghRepos.parallelStream().map(repo -> criteria.getRawRepositoryFromGhRepo(repo))
                 .collect(Collectors.toList());
+        System.out.println("Found "+res.size()+" different result searching by "+criteria.getCriteriaName()+" criteria");
+
         return res;
     }
 
@@ -119,10 +127,14 @@ public class GithubGraphQlEndpoint {
         GithubGraphQLResponse last;
         List<GithubGraphQLRepository> res = new LinkedList<>();
         String cursor = null;
-        int i = 1;
+        int i = 0;
         do {
             last = this.searchRepositoryQuery(cursor, createdPattern, criteria);
             if (last.getRepositoryCount() > 1000) {
+                //Throw error to force caller to change "createdPattern" instead of getting the first 1000 elements
+                //and then notify the date of the last element. We cannot do that because it seems that github api do not
+                //order very well big query .. so using such mechanism can induce a lost of repo.. so I prefer to throw
+                //an error !
                 throw new BusinessCheckedException(ErrorCode.RESULTS_EXCEED_1000);
             }
             cursor = last.getPageInfo().getEndCursor();
@@ -161,64 +173,10 @@ public class GithubGraphQlEndpoint {
     }
 
 
-    public interface Criteria {
-        RawRepository getRawRepositoryFromGhRepo(GithubGraphQLRepository repo);
 
-        String getRawCheckpointUri();
 
-        String getCriteriaName();
 
-        String getGraphQlQueryArg(String created);
-    }
 
-    public class ReadmeCriteria implements Criteria {
 
-        @Override
-        public RawRepository getRawRepositoryFromGhRepo(GithubGraphQLRepository repo) {
-            String textContainingGplayUri = "";
-            if (repo.getReadme() != null && repo.getReadme().getText() != null) {
-                textContainingGplayUri = repo.getReadme().getText();
-            }
-            return new RawRepository(repo.getUrl(), repo.getSshUrl(), textContainingGplayUri);
-        }
-
-        @Override
-        public String getRawCheckpointUri() {
-            return config.raw_github_readme();
-        }
-
-        @Override
-        public String getCriteriaName() {
-            return "readme";
-        }
-
-        @Override
-        public String getGraphQlQueryArg(String created) {
-            return "https://play.google.com/store/apps/details?id= in:readme created:" + created;
-        }
-    }
-
-    public class DescriptionCriteria implements Criteria {
-
-        @Override
-        public RawRepository getRawRepositoryFromGhRepo(GithubGraphQLRepository repo) {
-            return new RawRepository(repo.getUrl(), repo.getSshUrl(), repo.getDescriptionHTML());
-        }
-
-        @Override
-        public String getRawCheckpointUri() {
-            return config.raw_github_readme();
-        }
-
-        @Override
-        public String getCriteriaName() {
-            return "description";
-        }
-
-        @Override
-        public String getGraphQlQueryArg(String created) {
-            return "https://play.google.com/store/apps/details?id= in:description created:" + created;
-        }
-    }
 
 }

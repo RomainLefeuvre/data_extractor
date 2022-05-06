@@ -8,7 +8,8 @@ For more information on github graphQL api
 https://docs.github.com/en/graphql
 
 You need to generate a token with read access to the public repos and then put it on the application.properties like
-`quarkus.smallrye-graphql-client.github-graphql.header.Authorization=bearer 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`
+`quarkus.smallrye-graphql-client.github-graphql.header.Authorization=bearer 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` 
+(this is not an active token .. )
 
 Results are stored in `/results` folder
 * res.json is a list of `Result` object (repoUrl,sshRepoUrl, googlePlayUrl)
@@ -25,9 +26,8 @@ ToDo:
 * optimize the time interval 
 * manage `2022-05-02 13:59:40,975 SEVERE [org.ecl.yas.int.Marshaller] (Quarkus Main Thread) null` 
 error that seems to be not blocking
-* Filter res.json to avoid duplicate entries
 * Change the graphql request to use the internal dsl instead of plain string
-*
+
 Notes :
 * The graphql api of github can return only 1k response by "main request" using pagination and "sub request" (100)
 * We need to decompose our main request because it returns 32k elements 
