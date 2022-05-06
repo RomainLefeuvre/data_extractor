@@ -1,5 +1,7 @@
 package fr.inria.diverse.model.graphql;
 
+import fr.inria.diverse.model.RawRepository;
+
 public class GithubGraphQLRepository {
     private GithubGraphQLReadme readme;
     private Boolean isFork;
@@ -64,4 +66,5 @@ public class GithubGraphQLRepository {
     public void setSshUrl(String sshUrl) {
         this.sshUrl = sshUrl;
     }
+
 }

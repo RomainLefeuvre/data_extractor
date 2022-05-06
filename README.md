@@ -27,7 +27,7 @@ ToDo:
 error that seems to be not blocking
 * Filter res.json to avoid duplicate entries
 * Change the graphql request to use the internal dsl instead of plain string
-
+*
 Notes :
 * The graphql api of github can return only 1k response by "main request" using pagination and "sub request" (100)
 * We need to decompose our main request because it returns 32k elements 

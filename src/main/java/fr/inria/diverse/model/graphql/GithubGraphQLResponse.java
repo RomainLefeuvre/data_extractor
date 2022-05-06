@@ -1,7 +1,5 @@
 package fr.inria.diverse.model.graphql;
 
-import fr.inria.diverse.model.GithubRepository;
-
 import java.util.List;
 
 public class GithubGraphQLResponse {
