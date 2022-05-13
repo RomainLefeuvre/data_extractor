@@ -1,7 +1,10 @@
 package fr.inria.diverse.api.client;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.inria.diverse.Utils;
 import fr.inria.diverse.config.FileConfig;
 import fr.inria.diverse.model.RawRepository;
+import fr.inria.diverse.model.RawRepositoryList;
 import fr.inria.diverse.model.exception.BusinessCheckedException;
 import fr.inria.diverse.model.exception.ErrorCode;
 import fr.inria.diverse.model.graphql.*;
@@ -11,6 +14,8 @@ import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClient;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.io.File;
+import java.io.IOException;
 import java.time.*;
 import java.time.chrono.ChronoZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -41,6 +46,14 @@ public class GithubGraphQlEndpoint {
 
     public List<RawRepository> getAllRawRepositoriesHavingGplayLinkInDescription(boolean checkpoint){
         return this.getAllRepositories(this.decriptionCriteria,checkpoint);
+    }
+
+    public List<RawRepository> getAllRawRepositoriesHavingGplayLinkInReadmeFromCheckPoint(){
+        return this.getAllRepositoriesFromCheckpoint(this.readmeCriteria);
+    }
+
+    public List<RawRepository> getAllRawRepositoriesHavingGplayLinkInDescriptionFromCheckPoint(){
+        return this.getAllRepositoriesFromCheckpoint(this.decriptionCriteria);
     }
     /**
      * Query Github GraphQL API to find repositories that contain a link to a google play application
@@ -99,30 +112,48 @@ public class GithubGraphQlEndpoint {
             currentIntervalEnd = currentIntervalEnd.plusMinutes(incrementInMinutes);
 
         } while (today.compareTo(ChronoZonedDateTime.from(currentIntervalStart)) > 0);
-        if (checkpoint) {
-            String checkpointUri = criteria.getRawCheckpointUri();
-            System.out.println("Saving raw repo containing gplay uri in" + criteria.getCriteriaName());
-            save(checkpointUri, ghRepos);
-        }
+
         List<RawRepository> res = ghRepos.parallelStream().map(repo -> criteria.getRawRepositoryFromGhRepo(repo))
                 .collect(Collectors.toList());
+        if (checkpoint) {
+            System.out.println("Saving raw repo containing gplay uri in" + criteria.getCriteriaName());
+            save(criteria.getRawJsonCheckpointUri(), ghRepos);
+            save(criteria.getRawRepoCheckpointUri(), res);
+
+        }
         System.out.println("Found "+res.size()+" different result searching by "+criteria.getCriteriaName()+" criteria");
 
         return res;
     }
 
-    /**
-     * Search for GithubGraphQLRepositories on a given interval describe on the "createdPattern" this pattern follow the
-     * github search api and the "created" field to filter by repo creation date.
-     * The Query must return less than 1k results else github api does not work,  a BusinessCheckedException can be
-     * thrown
-     *
-     * @param createdPattern the pattern to filter by date
-     * @param criteria       wether we search in readme or in description
-     * @return The list of repositories
-     * @throws BusinessCheckedException RESULTS_EXCEED_1000 error when the query produce more than 1k repos (github api
-     *                                  limitation)
-     */
+    private List<RawRepository> getAllRepositoriesFromRawJson(Criteria criteria) {
+        List<GithubGraphQLRepository> ghRepos = this.read(criteria.getRawJsonCheckpointUri());
+        List<RawRepository> res = ghRepos.parallelStream().map(repo -> criteria.getRawRepositoryFromGhRepo(repo))
+                .collect(Collectors.toList());
+        System.out.println("Found "+res.size()+" different result searching by "+criteria.getCriteriaName()+" criteria");
+        save(criteria.getRawRepoCheckpointUri(), res);
+
+        return res;
+    }
+
+    private RawRepositoryList getAllRepositoriesFromCheckpoint(Criteria criteria) {
+        RawRepositoryList res = Utils.read(criteria.getRawRepoCheckpointUri());
+        return res;
+    }
+
+
+        /**
+         * Search for GithubGraphQLRepositories on a given interval describe on the "createdPattern" this pattern follow the
+         * github search api and the "created" field to filter by repo creation date.
+         * The Query must return less than 1k results else github api does not work,  a BusinessCheckedException can be
+         * thrown
+         *
+         * @param createdPattern the pattern to filter by date
+         * @param criteria       wether we search in readme or in description
+         * @return The list of repositories
+         * @throws BusinessCheckedException RESULTS_EXCEED_1000 error when the query produce more than 1k repos (github api
+         *                                  limitation)
+         */
     private List<GithubGraphQLRepository> searchOnInterval(String createdPattern, Criteria criteria) throws BusinessCheckedException {
         GithubGraphQLResponse last;
         List<GithubGraphQLRepository> res = new LinkedList<>();
@@ -153,8 +184,8 @@ public class GithubGraphQlEndpoint {
      * @param criteria wheter it search in readme else in description
      * @return A GithubGraphQLResponse containing the first 100 repos
      */
-    private GithubGraphQLResponse searchRepositoryQuery(String after, String created, Criteria criteria) {
-        String query = "query SearchRepo($queryString: String!, $after: String) { " + "search(query: $queryString, type: REPOSITORY, first: 100, after: $after) { " + "repositoryCount " + "pageInfo{" + "endCursor " + "hasNextPage " + "} " + "edges { " + "cursor " + "repository: node { " + "... on Repository { " + "readme: object(expression: \"master:README.md\") { " + "... on Blob { " + "text " + " } " + " } " + "url " + "sshUrl " + "isFork " + "name " + "descriptionHTML " + "stars:stargazers { " + "totalCount " + "}" + "}" + "}" + "}" + "}" + "}";
+    public GithubGraphQLResponse searchRepositoryQuery(String after, String created, Criteria criteria) {
+        String query = "query SearchRepo($queryString: String!, $after: String) { " + "search(query: $queryString, type: REPOSITORY, first: 100, after: $after) { " + "repositoryCount " + "pageInfo{" + "endCursor " + "hasNextPage " + "} " + "edges { " + "cursor " + "repository: node { " + "... on Repository { " + "readme: object(expression: \"master:README.md\") { " + "... on Blob { " + "text " + " } " + " } " + "url " + "sshUrl " + "isFork " + "name " + "descriptionHTML " + "owner {login} "+ "stars:stargazers { " + "totalCount " + "}" + "}" + "}" + "}" + "}" + "}";
         Map<String, Object> variables = new HashMap<>(); // <3>
         variables.put("queryString", criteria.getGraphQlQueryArg(created));
         variables.put("after", after);
@@ -173,7 +204,16 @@ public class GithubGraphQlEndpoint {
     }
 
 
+    public GithubGraphQLRepositoryList read(String fileName){
+        ObjectMapper mapper = new ObjectMapper();
 
+        try {
+            File f =new File(fileName);
+            return mapper.readValue(f, GithubGraphQLRepositoryList.class);
+        } catch (IOException e) {
+            throw new RuntimeException("Error while getting checkpoint",e);
+        }
+    }
 
 
 

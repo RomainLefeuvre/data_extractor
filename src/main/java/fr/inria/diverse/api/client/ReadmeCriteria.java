@@ -18,12 +18,18 @@ public class ReadmeCriteria implements Criteria {
         if (repo.getReadme() != null && repo.getReadme().getText() != null) {
             textContainingGplayUri = repo.getReadme().getText();
         }
-        return new RawRepository(repo.getUrl(), repo.getSshUrl(), textContainingGplayUri);
+        return new RawRepository(repo.getUrl(),repo.getName(),repo.getOwner().getLogin(), repo.getSshUrl(), textContainingGplayUri);
     }
 
     @Override
-    public String getRawCheckpointUri() {
-        return config.raw_github_readme();
+    public String getRawJsonCheckpointUri() {
+        return config.rawJson_github_readme();
+    }
+
+    @Override
+    public String getRawRepoCheckpointUri() {
+                 return config.rawRepo_github_readme();
+
     }
 
     @Override

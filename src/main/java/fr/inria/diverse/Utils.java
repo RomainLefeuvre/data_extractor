@@ -1,6 +1,7 @@
 package fr.inria.diverse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.inria.diverse.model.RawRepositoryList;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,17 @@ public class Utils {
             mapper.writerWithDefaultPrettyPrinter().writeValue(f,object);
         } catch (IOException e) {
             throw new RuntimeException("Error while saving results",e);
+        }
+    }
+
+    public static RawRepositoryList read(String fileName){
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            File f =new File(fileName);
+            return mapper.readValue(f, RawRepositoryList.class);
+        } catch (IOException e) {
+            throw new RuntimeException("Error while getting checkpoint",e);
         }
     }
 }

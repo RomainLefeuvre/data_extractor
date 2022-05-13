@@ -2,10 +2,13 @@ package fr.inria.diverse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.inria.diverse.api.client.GithubGraphQlEndpoint;
+import fr.inria.diverse.api.client.GithubRestEndpoint;
 import fr.inria.diverse.config.FileConfig;
 import fr.inria.diverse.model.RawRepository;
+import fr.inria.diverse.model.RawRepositoryList;
 import fr.inria.diverse.model.Result;
-import fr.inria.diverse.model.graphql.RawRepositoryList;
+import fr.inria.diverse.model.graphql.GithubGraphQLRepository;
+import fr.inria.diverse.model.graphql.GithubGraphQLRepositoryList;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -15,17 +18,18 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static fr.inria.diverse.Utils.read;
 import static fr.inria.diverse.Utils.save;
 
 @ApplicationScoped
 public class DataExtractor {
-    ObjectMapper mapper = new ObjectMapper();
     Pattern p = Pattern.compile("(https?://play.google.com/store/apps/details\\?id=[a-zA-Z0-9.]*)");
-
     @Inject
     FileConfig config;
     @Inject
     GithubGraphQlEndpoint graphQlEndpoint;
+    @Inject
+    GithubRestEndpoint restEndpoint;
     public DataExtractor()   {
 
     }
@@ -37,10 +41,11 @@ public class DataExtractor {
     public HashSet<Result> extract(){
         HashSet<Result> res = new HashSet<>();
 
-        //List<RawRepository> rawRepoHavingGplayUriInDesc =graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInDescription(true);
-        //res.addAll(extractFromRawResult(rawRepoHavingGplayUriInDesc ,config.missed_description_reposWithoutURI(),config.missed_description_reposWithMoreThanOneUri()));
+        List<RawRepository> rawRepoHavingGplayUriInDesc =graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInDescription(true);
+        res.addAll(extractFromRawResult(rawRepoHavingGplayUriInDesc ,config.missed_description_reposWithoutURI(),config.missed_description_reposWithMoreThanOneUri()));
 
         List<RawRepository> rawRepoHavingGplayUriInReadme =graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInReadme(true);
+        //retrieveGithubReadme(rawRepoHavingGplayUriInReadme);
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInReadme ,config.missed_readme_reposWithoutURI(),config.missed_readme_reposWithMoreThanOneUri()));
 
         System.out.println("Found "+res.size()+" different result");
@@ -53,19 +58,41 @@ public class DataExtractor {
      */
     public void extractFromCheckPoint(){
         HashSet<Result> res = new HashSet<>();
-        RawRepositoryList rawRepoHavingGplayUriInDesc = this.read(config.raw_github_description());
+        System.out.println("\n\n---------RESULTS by criteria---------");
+        List<RawRepository> rawRepoHavingGplayUriInDesc = graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInDescriptionFromCheckPoint();
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInDesc ,config.missed_description_reposWithoutURI(),config.missed_description_reposWithMoreThanOneUri()));
 
-        RawRepositoryList rawRepoHavingGplayUriInReadme = this.read(config.raw_github_readme());
+        List<RawRepository> rawRepoHavingGplayUriInReadme = this.graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInReadmeFromCheckPoint();
+        retrieveGithubReadme(rawRepoHavingGplayUriInReadme);
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInReadme ,config.missed_readme_reposWithoutURI(),config.missed_readme_reposWithMoreThanOneUri()));
 
-        System.out.println("Found "+res.size()+" different result");
+        System.out.println("\n\n---------RESULTS---------");
+        System.out.println("Found "+res.size()+" different result at all(different tuple ie tuple which have at least 1 attrbute not equals)");
 
         Set<String> test = new HashSet<>();
         res.forEach(repo -> test.add(repo.getGooglePlayUrl()));
         System.out.println("Found "+test.size()+" different gplay uri" );
         printResult();
         save(config.final_result(),res);
+    }
+
+    private void retrieveGithubReadme(List<RawRepository> list) {
+        int i =0;
+
+        for(RawRepository repo : list) {
+         if (repo.getTextContainingGplayUri() == null || repo.getTextContainingGplayUri().isEmpty()) {
+             String readme = restEndpoint.getReadme(repo.getName(), repo.getOwner());
+             repo.setTextContainingGplayUri(readme);
+             i++;
+             //Limit at 5k, todo : handle it in a better way
+             if(i%500==0) {
+                 save(config.rawRepo_github_readme(), list);
+             }
+
+         }
+     }
+        save(config.rawRepo_github_readme(),list);
+
     }
 
 
@@ -102,30 +129,28 @@ public class DataExtractor {
      * Print result that are stored on results folder
      */
     private void printResult(){
-        RawRepositoryList descWithoutUri = this.read(config.missed_description_reposWithoutURI());
+        System.out.println("\n\n---------Missed Stats :result searching by description criteria----------");
+        RawRepositoryList descWithoutUri = read(config.missed_description_reposWithoutURI());
         System.out.println("Found "+descWithoutUri.size()+ " repos without uri while it was suppose to have at least one in description");
 
-        RawRepositoryList descWithMoreThanOneUri = this.read(config.missed_description_reposWithMoreThanOneUri());
+        RawRepositoryList descWithMoreThanOneUri = read(config.missed_description_reposWithMoreThanOneUri());
         System.out.println("Found "+descWithMoreThanOneUri.size()+ " repos with more than one uri in description");
 
-        RawRepositoryList readmeWithoutUri = this.read(config.missed_readme_reposWithMoreThanOneUri());
+        System.out.println("\n---------Missed Stats :result searching by readme criteria----------");
+        RawRepositoryList readmeWithoutUri = read(config.missed_readme_reposWithoutURI());
         System.out.println("Found "+readmeWithoutUri.size()+ " repos without uri while it was suppose to have at least one in readme");
+        //adding special metric for repo with empty textcontainingGplayuri attribute issue #1
+        long empty_null_readme_count =readmeWithoutUri.stream().filter(next ->  next.getTextContainingGplayUri()==null||next.getTextContainingGplayUri().isEmpty()).count();
+        System.out.println(" --> Found "+empty_null_readme_count+" repos with an empty or null readme while it was suppose to have a readme and a gplay uri in that readme\n");
 
-        RawRepositoryList readmeWithMoreThanOneUri = this.read(config.missed_readme_reposWithMoreThanOneUri());
+        RawRepositoryList readmeWithMoreThanOneUri = read(config.missed_readme_reposWithMoreThanOneUri());
         System.out.println("Found "+readmeWithMoreThanOneUri.size()+ " repos with more than one uri in readme");
 
     }
 
 
 
-    private RawRepositoryList read(String fileName){
-        try {
-            File f =new File(fileName);
-           return mapper.readValue(f, RawRepositoryList.class);
-        } catch (IOException e) {
-            throw new RuntimeException("Error while getting checkpoint",e);
-        }
-    }
+
 
     /**
      * Extract google play uris from a string

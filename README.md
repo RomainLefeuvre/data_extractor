@@ -1,6 +1,6 @@
 Data-extractor Project
 ==
-The objective of this project to identify the github repository of android applications available on the play store.
+The objective of this project to identify github repositories of android applications that are also available on the play store.
 We use the github graphQL API in order to search project having _https://play.google.com/store/apps/details?id=_ in its
 description or readme.
 
@@ -35,6 +35,8 @@ https://github.community/t/graphql-api-search-results-end-after-10-pages/14128/2
 
 Issue:
 For an unknow reason more than 1k repos have been created in 2017-10-27T21 .
+
+
 # Quarkus commands : 
 ## Running the application in dev mode
 

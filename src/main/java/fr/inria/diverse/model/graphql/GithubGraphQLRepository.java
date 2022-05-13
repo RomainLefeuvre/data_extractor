@@ -1,7 +1,5 @@
 package fr.inria.diverse.model.graphql;
 
-import fr.inria.diverse.model.RawRepository;
-
 public class GithubGraphQLRepository {
     private GithubGraphQLReadme readme;
     private Boolean isFork;
@@ -10,6 +8,7 @@ public class GithubGraphQLRepository {
     private GithubGraphQLStars stars;
     private String url;
     private String sshUrl;
+    private GithubGraphQLOwner owner;
 
     public GithubGraphQLReadme getReadme() {
         return readme;
@@ -67,4 +66,7 @@ public class GithubGraphQLRepository {
         this.sshUrl = sshUrl;
     }
 
+    public GithubGraphQLOwner getOwner() { return owner; }
+
+    public void setOwner(GithubGraphQLOwner owner) { this.owner = owner; }
 }

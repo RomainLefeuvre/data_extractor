@@ -14,12 +14,17 @@ public class DescriptionCriteria implements Criteria {
 
     @Override
     public RawRepository getRawRepositoryFromGhRepo(GithubGraphQLRepository repo) {
-        return new RawRepository(repo.getUrl(), repo.getSshUrl(), repo.getDescriptionHTML());
+        return new RawRepository(repo.getUrl(),repo.getName(),repo.getOwner().getLogin(), repo.getSshUrl(), repo.getDescriptionHTML());
     }
 
     @Override
-    public String getRawCheckpointUri() {
-        return config.raw_github_description();
+    public String getRawJsonCheckpointUri() {
+        return config.rawJson_github_description();
+    }
+
+    @Override
+    public String getRawRepoCheckpointUri() {
+        return config.rawRepo_github_description();
     }
 
     @Override

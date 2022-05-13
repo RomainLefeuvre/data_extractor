@@ -8,7 +8,9 @@ String missed_description_reposWithMoreThanOneUri();
 String missed_readme_reposWithMoreThanOneUri();
 String missed_description_reposWithoutURI();
 String missed_readme_reposWithoutURI();
-String raw_github_description();
-String raw_github_readme();
+String rawJson_github_description();
+String rawJson_github_readme();
+String rawRepo_github_description();
+String rawRepo_github_readme();
 String final_result();
 }
