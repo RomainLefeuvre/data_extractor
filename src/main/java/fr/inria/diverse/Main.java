@@ -15,8 +15,8 @@ public class Main implements QuarkusApplication  {
     FileConfig fc;
         @Override
         public int run(String... args) throws Exception {
-            de.extract();
-            //de.extractFromCheckPoint();
+            //de.extract();
+            de.extractFromCheckPoint();
             return 0;
     }
 }

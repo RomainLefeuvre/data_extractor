@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static fr.inria.diverse.Utils.read;
 import static fr.inria.diverse.Utils.save;
@@ -63,7 +64,7 @@ public class DataExtractor {
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInDesc ,config.missed_description_reposWithoutURI(),config.missed_description_reposWithMoreThanOneUri()));
 
         List<RawRepository> rawRepoHavingGplayUriInReadme = this.graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInReadmeFromCheckPoint();
-        retrieveGithubReadme(rawRepoHavingGplayUriInReadme);
+        rawRepoHavingGplayUriInReadme= retrieveGithubReadme(rawRepoHavingGplayUriInReadme);
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInReadme ,config.missed_readme_reposWithoutURI(),config.missed_readme_reposWithMoreThanOneUri()));
 
         System.out.println("\n\n---------RESULTS---------");
@@ -75,24 +76,30 @@ public class DataExtractor {
         printResult();
         save(config.final_result(),res);
     }
+    /**
+     * Readme that are not located on master:README.md are ignored by the previous steps,
+     * We need a way to extract the missing README. It is not possible to cover all cases
+     * with the graphQL API, so we decide to implement this function that will search for missing readme
+     * using REST API.
+     * @param list the source RawRepoList
+     * @return a new list with textContainingGplayUri filled by the missing README
+     * Notes :
+     * - if your quotas are met, the program simply wait until you obtain new credits
+     * - if there is an error during REST call, the repo is simply skipped.
+     * Todo : Handle error cases
+     * Todo : Send notification when your credit are reached
+     */
+    private List<RawRepository> retrieveGithubReadme(List<RawRepository> list) {
+        List<RawRepository> newList = list.parallelStream().map(repo ->{
+            if (repo.getTextContainingGplayUri() == null || repo.getTextContainingGplayUri().isEmpty()) {
+                String readme = restEndpoint.getReadme(repo.getName(), repo.getOwner());
+                repo.setTextContainingGplayUri(readme);
+            }
+            return repo;
+        }).collect(Collectors.toList());
 
-    private void retrieveGithubReadme(List<RawRepository> list) {
-        int i =0;
-
-        for(RawRepository repo : list) {
-         if (repo.getTextContainingGplayUri() == null || repo.getTextContainingGplayUri().isEmpty()) {
-             String readme = restEndpoint.getReadme(repo.getName(), repo.getOwner());
-             repo.setTextContainingGplayUri(readme);
-             i++;
-             //Limit at 5k, todo : handle it in a better way
-             if(i%500==0) {
-                 save(config.rawRepo_github_readme(), list);
-             }
-
-         }
-     }
-        save(config.rawRepo_github_readme(),list);
-
+        save(config.rawRepo_github_readme(),newList);
+        return newList;
     }
 
 
@@ -147,9 +154,6 @@ public class DataExtractor {
         System.out.println("Found "+readmeWithMoreThanOneUri.size()+ " repos with more than one uri in readme");
 
     }
-
-
-
 
 
     /**
