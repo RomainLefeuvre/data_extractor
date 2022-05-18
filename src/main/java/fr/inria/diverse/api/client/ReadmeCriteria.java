@@ -7,6 +7,9 @@ import fr.inria.diverse.model.graphql.GithubGraphQLRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @ApplicationScoped
 public class ReadmeCriteria implements Criteria {
     @Inject
@@ -18,7 +21,9 @@ public class ReadmeCriteria implements Criteria {
         if (repo.getReadme() != null && repo.getReadme().getText() != null) {
             textContainingGplayUri = repo.getReadme().getText();
         }
-        return new RawRepository(repo.getUrl(),repo.getName(),repo.getOwner().getLogin(), repo.getSshUrl(), textContainingGplayUri);
+        List<String> topics=repo.getRepositoryTopics().getEdges().stream().map(edge -> edge.getNode().getName()).collect(Collectors.toList());
+
+        return new RawRepository(repo.getUrl(),repo.getName(),repo.getOwner().getLogin(), repo.getSshUrl(), textContainingGplayUri,topics);
     }
 
     @Override

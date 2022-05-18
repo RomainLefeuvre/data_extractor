@@ -13,4 +13,6 @@ String rawJson_github_readme();
 String rawRepo_github_description();
 String rawRepo_github_readme();
 String final_result();
+String archive_folder();
+String base_folder();
 }

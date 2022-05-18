@@ -5,6 +5,13 @@ import fr.inria.diverse.model.RawRepositoryList;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Comparator;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Utils {
 
@@ -36,4 +43,35 @@ public class Utils {
             throw new RuntimeException("Error while getting checkpoint",e);
         }
     }
+
+   public static void deleteDirectoryStream(String string)  {
+        Path path =Paths.get(string);
+        assert(path.startsWith(Paths.get(".").toAbsolutePath()));
+       try {
+           Files.walk(path)
+                   .sorted(Comparator.reverseOrder())
+                   .map(Path::toFile)
+                   .forEach(File::delete);
+       } catch (IOException e) {
+           new RuntimeException("Error while deleting",e);
+       }
+   }
+
+    public static void copyDirectory(String sourceDirectoryLocation, String destinationDirectoryLocation)
+              {
+                  try {
+                      Files.walk(Paths.get(sourceDirectoryLocation))
+                              .forEach(source -> {
+                                  Path destination = Paths.get(destinationDirectoryLocation, source.toString()
+                                          .substring(sourceDirectoryLocation.length()));
+                                  try {
+                                      Files.copy(source, destination, REPLACE_EXISTING);
+                                  } catch (IOException e) {
+                                      e.printStackTrace();
+                                  }
+                              });
+                  } catch (IOException e) {
+                      throw new RuntimeException("Error while copying",e);
+                  }
+              }
 }

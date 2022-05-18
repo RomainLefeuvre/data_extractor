@@ -1,8 +1,8 @@
 package fr.inria.diverse.model.graphql;
 
-public class GithubGraphQLEdges {
+public class GithubGraphQLEdges<T> {
         private String cursor;
-        private GithubGraphQLRepository repository;
+        private T node;
 
         public String getCursor() {
             return cursor;
@@ -12,11 +12,11 @@ public class GithubGraphQLEdges {
             this.cursor = cursor;
         }
 
-        public GithubGraphQLRepository getRepository() {
-            return repository;
+        public T getNode() {
+            return node;
         }
 
-        public void setRepository(GithubGraphQLRepository repository) {
-            this.repository = repository;
+        public void setNode(T repository) {
+            this.node = repository;
         }
     }

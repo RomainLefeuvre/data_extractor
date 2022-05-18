@@ -22,7 +22,9 @@ public class DataExtractorTest {
     @Test
     public void extractGooglePlayUriTest2(){
         Set<String> res =de.extractGooglePlayUri("kjkjkhttps://play.google.com/store/apps/details?id=net.sourceforge.bochs\" rel=\"nofolhttps://play.google.com/store/apps/details?id=net.sourceforqsdsqdqsdge.bochslow\">https://play.google.com/store/apps/details?id=net.sourceforge.bochs</a>\n</div>");
-        Assertions.assertEquals(res.size(),2);
+        Assertions.assertEquals(2,res.size());
+        res =de.extractGooglePlayUri("kjkjkhttps://play.google.com/store/apps\n/details?id=net.sourceforge.bochs");
+        Assertions.assertEquals(1,res.size());
     }
 
 }

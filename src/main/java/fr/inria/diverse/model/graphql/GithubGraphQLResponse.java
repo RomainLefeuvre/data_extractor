@@ -8,7 +8,7 @@ public class GithubGraphQLResponse {
 
     private int repositoryCount;
     private GithubGraphQLPageInfo pageInfo;
-    private List<GithubGraphQLEdges> edges;
+    private List<GithubGraphQLEdges<GithubGraphQLRepository>> edges;
 
     //Getters and setters
     public int getRepositoryCount() {
@@ -25,10 +25,10 @@ public class GithubGraphQLResponse {
         this.pageInfo = pageInfo;
     }
 
-    public List<GithubGraphQLEdges> getEdges() {
+    public List<GithubGraphQLEdges<GithubGraphQLRepository>> getEdges() {
         return edges;
     }
-    public void setEdges(List<GithubGraphQLEdges> edges) {
+    public void setEdges(List<GithubGraphQLEdges<GithubGraphQLRepository>> edges) {
         this.edges = edges;
     }
 

@@ -40,6 +40,11 @@ public class DataExtractor {
      * @return a set of Result, representing the tuple
      */
     public HashSet<Result> extract(){
+        File previousResults = new File(this.config.base_folder());
+        if(previousResults.exists()){
+            Utils.deleteDirectoryStream(config.archive_folder());
+            Utils.copyDirectory(config.base_folder(),config.archive_folder());
+        }
         HashSet<Result> res = new HashSet<>();
 
         List<RawRepository> rawRepoHavingGplayUriInDesc =graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInDescription(true);
@@ -64,6 +69,7 @@ public class DataExtractor {
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInDesc ,config.missed_description_reposWithoutURI(),config.missed_description_reposWithMoreThanOneUri()));
 
         List<RawRepository> rawRepoHavingGplayUriInReadme = this.graphQlEndpoint.getAllRawRepositoriesHavingGplayLinkInReadmeFromCheckPoint();
+
         rawRepoHavingGplayUriInReadme= retrieveGithubReadme(rawRepoHavingGplayUriInReadme);
         res.addAll(extractFromRawResult(rawRepoHavingGplayUriInReadme ,config.missed_readme_reposWithoutURI(),config.missed_readme_reposWithMoreThanOneUri()));
 
@@ -90,6 +96,23 @@ public class DataExtractor {
      * Todo : Send notification when your credit are reached
      */
     private List<RawRepository> retrieveGithubReadme(List<RawRepository> list) {
+       /* RawRepositoryList archive = Utils.read("archive/raw/github/rawJson/readme.json");
+        Map<String,String> index = archive.stream().collect(Collectors.toMap(RawRepository::getRepoUrl,RawRepository::getTextContainingGplayUri));
+
+        List<RawRepository> newList = list.parallelStream().map(repo ->{
+            if (repo.getTextContainingGplayUri() == null || repo.getTextContainingGplayUri().isEmpty()) {
+                repo.setTextContainingGplayUri(index.get(repo.getRepoUrl()));
+                if(repo.getTextContainingGplayUri() == null || repo.getTextContainingGplayUri().isEmpty()){
+                    String readme = restEndpoint.getReadme(repo.getName(), repo.getOwner());
+                    repo.setTextContainingGplayUri(readme);
+                }
+
+            }
+            return repo;
+        }).collect(Collectors.toList());
+
+        save(config.rawRepo_github_readme(),newList);*/
+
         List<RawRepository> newList = list.parallelStream().map(repo ->{
             if (repo.getTextContainingGplayUri() == null || repo.getTextContainingGplayUri().isEmpty()) {
                 String readme = restEndpoint.getReadme(repo.getName(), repo.getOwner());
@@ -99,6 +122,7 @@ public class DataExtractor {
         }).collect(Collectors.toList());
 
         save(config.rawRepo_github_readme(),newList);
+
         return newList;
     }
 
@@ -127,7 +151,6 @@ public class DataExtractor {
         });
         save(repoWithoutUrlCheckpoint,reposWithoutURI);
         save(reposWithMoreThanOneUriCheckpoint,reposWithMoreThanOneUri);
-
         return results;
     }
 
@@ -162,7 +185,8 @@ public class DataExtractor {
      * @return
      */
     public Set<String> extractGooglePlayUri(String source){
-        Matcher m = p.matcher(source);
+        String cleanedString = source.trim().replaceAll("\r|\n", "");
+        Matcher m = p.matcher(cleanedString);
         final Set<String> matches = new HashSet<>();
         while (m.find()) {
             matches.add(m.group(0));

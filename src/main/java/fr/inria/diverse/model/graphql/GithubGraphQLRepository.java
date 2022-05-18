@@ -9,6 +9,7 @@ public class GithubGraphQLRepository {
     private String url;
     private String sshUrl;
     private GithubGraphQLOwner owner;
+    private GithubGraphQLRepositoryTopics repositoryTopics;
 
     public GithubGraphQLReadme getReadme() {
         return readme;
@@ -69,4 +70,12 @@ public class GithubGraphQLRepository {
     public GithubGraphQLOwner getOwner() { return owner; }
 
     public void setOwner(GithubGraphQLOwner owner) { this.owner = owner; }
+
+    public GithubGraphQLRepositoryTopics getRepositoryTopics() {
+        return repositoryTopics;
+    }
+
+    public void setRepositoryTopics(GithubGraphQLRepositoryTopics repositoryTopics) {
+        this.repositoryTopics = repositoryTopics;
+    }
 }
